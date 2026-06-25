@@ -1,6 +1,6 @@
 :root {
   color-scheme: dark;
-  --bg: #090b10;
+  --bg: #171717;
   --panel: rgba(10, 14, 20, 0.82);
   --panel-2: rgba(255, 255, 255, 0.03);
   --text: #f5f7fa;
@@ -199,7 +199,7 @@ h1 {
   padding: 20px 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.022);
+  background: rgba(255, 255, 255, 0.018);
   margin-top: 10px;
 }
 
