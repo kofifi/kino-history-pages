@@ -1,8 +1,9 @@
-const historyListElement = document.querySelector("#history-list");
+const tableWrapperElement = document.querySelector("#history-table-wrapper");
+const tableBodyElement = document.querySelector("#history-table-body");
 const statusMessageElement = document.querySelector("#status-message");
 const summaryElement = document.querySelector("#history-summary");
 const searchInputElement = document.querySelector("#search-input");
-const historyItemTemplate = document.querySelector("#history-item-template");
+const historyRowTemplate = document.querySelector("#history-row-template");
 
 const state = {
   items: [],
@@ -39,14 +40,14 @@ const renderSummary = () => {
 };
 
 const renderEmptyState = (message) => {
-  historyListElement.hidden = true;
-  historyListElement.replaceChildren();
+  tableWrapperElement.hidden = true;
+  tableBodyElement.replaceChildren();
   statusMessageElement.hidden = false;
   statusMessageElement.textContent = message;
   renderSummary();
 };
 
-const renderList = () => {
+const renderTable = () => {
   if (state.filteredItems.length === 0) {
     renderEmptyState("Brak filmów pasujących do wyszukiwania.");
     return;
@@ -55,24 +56,24 @@ const renderList = () => {
   const fragment = document.createDocumentFragment();
 
   for (const item of state.filteredItems) {
-    const node = historyItemTemplate.content.cloneNode(true);
+    const row = historyRowTemplate.content.cloneNode(true);
 
-    node.querySelector(".history-card__year").textContent = item.year || "Brak roku";
-    node.querySelector(".history-card__rating").textContent = Number.isFinite(Number(item.filmwebRating))
-      ? `Filmweb ${Number(item.filmwebRating).toFixed(1)}`
+    row.querySelector(".history-title").textContent = item.title || "Nieznany tytuł";
+    row.querySelector(".history-year").textContent = item.year || "Brak roku";
+    row.querySelector(".history-rating").textContent = Number.isFinite(Number(item.filmwebRating))
+      ? Number(item.filmwebRating).toFixed(1)
       : "Brak oceny";
-    node.querySelector(".history-card__title").textContent = item.title || "Nieznany tytuł";
-    node.querySelector(".history-card__scheduled").textContent = `Zaplanowano: ${formatDateTime(item.scheduledAt)}`;
-    node.querySelector(".history-card__archived").textContent = `Zarchiwizowano: ${formatDateTime(item.archivedAt)}`;
+    row.querySelector(".history-scheduled").textContent = formatDateTime(item.scheduledAt);
+    row.querySelector(".history-archived").textContent = formatDateTime(item.archivedAt);
 
-    const linkElement = node.querySelector(".history-card__link");
+    const linkElement = row.querySelector(".history-link");
     linkElement.href = item.filmwebLink || "#";
 
-    fragment.append(node);
+    fragment.append(row);
   }
 
-  historyListElement.replaceChildren(fragment);
-  historyListElement.hidden = false;
+  tableBodyElement.replaceChildren(fragment);
+  tableWrapperElement.hidden = false;
   statusMessageElement.hidden = true;
   renderSummary();
 };
@@ -82,16 +83,12 @@ const applyFilter = () => {
 
   if (!query) {
     state.filteredItems = [...state.items];
-    renderList();
+    renderTable();
     return;
   }
 
   state.filteredItems = state.items.filter((item) => {
-    const haystack = [
-      item.title,
-      item.year,
-      item.filmwebLink,
-    ]
+    const haystack = [item.title, item.year, item.filmwebLink]
       .filter(Boolean)
       .join(" ")
       .toLowerCase();
@@ -99,7 +96,7 @@ const applyFilter = () => {
     return haystack.includes(query);
   });
 
-  renderList();
+  renderTable();
 };
 
 const bootstrap = async () => {
@@ -119,7 +116,7 @@ const bootstrap = async () => {
       return;
     }
 
-    renderList();
+    renderTable();
   } catch (error) {
     console.error("HISTORY_BOOTSTRAP_FAILED", error);
     renderEmptyState("Nie udało się wczytać historii filmów.");

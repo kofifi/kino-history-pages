@@ -9,59 +9,48 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="page-background">
-      <div class="page-background__orb page-background__orb--blue"></div>
-      <div class="page-background__orb page-background__orb--amber"></div>
-      <div class="page-background__grid"></div>
-    </div>
-
     <main class="page-shell">
       <header class="page-header">
-        <div class="page-heading">
+        <div>
           <p class="eyebrow">Kino</p>
           <h1>Historyczne filmy</h1>
           <p id="history-summary" class="summary">Ładowanie historii…</p>
         </div>
-        <div class="toolbar">
-          <label class="search-field" for="search-input">
-            <span>Szukaj</span>
-            <input id="search-input" type="search" placeholder="Tytuł, rok, Filmweb" autocomplete="off" />
-          </label>
-        </div>
+        <label class="search-field" for="search-input">
+          <span>Szukaj</span>
+          <input id="search-input" type="search" placeholder="Tytuł, rok, Filmweb" autocomplete="off" />
+        </label>
       </header>
 
       <section class="history-panel">
-        <div class="history-panel__header">
-          <div class="history-panel__icon" aria-hidden="true">◴</div>
-          <div class="history-panel__copy">
-            <p class="history-panel__title">Archiwum repertuaru</p>
-            <p class="history-panel__description">
-              Tutaj trafiają filmy, których termin emisji już minął. Dane są
-              publikowane automatycznie z repertuaru.
-            </p>
-          </div>
-        </div>
         <div id="status-message" class="status-message" aria-live="polite">Pobieranie danych…</div>
-        <div id="history-list" class="history-list" hidden></div>
+        <div id="history-table-wrapper" class="history-table-wrapper" hidden>
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th scope="col">Tytuł</th>
+                <th scope="col">Rok</th>
+                <th scope="col">Ocena Filmweb</th>
+                <th scope="col">Zaplanowano</th>
+                <th scope="col">Zarchiwizowano</th>
+                <th scope="col">Link</th>
+              </tr>
+            </thead>
+            <tbody id="history-table-body"></tbody>
+          </table>
+        </div>
       </section>
     </main>
 
-    <template id="history-item-template">
-      <article class="history-card">
-        <div class="history-card__topline">
-          <div class="history-card__meta">
-            <span class="history-card__status">Historyczne</span>
-            <span class="history-card__year"></span>
-            <span class="history-card__rating"></span>
-          </div>
-          <a class="history-card__link" target="_blank" rel="noopener noreferrer">Filmweb</a>
-        </div>
-        <h2 class="history-card__title"></h2>
-        <div class="history-card__dates">
-          <span class="history-card__scheduled"></span>
-          <span class="history-card__archived"></span>
-        </div>
-      </article>
+    <template id="history-row-template">
+      <tr>
+        <td class="history-title"></td>
+        <td class="history-year"></td>
+        <td class="history-rating"></td>
+        <td class="history-scheduled"></td>
+        <td class="history-archived"></td>
+        <td><a class="history-link" target="_blank" rel="noopener noreferrer">Filmweb</a></td>
+      </tr>
     </template>
 
     <script type="module" src="./app.js"></script>
