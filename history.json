@@ -1,5 +1,15 @@
 {
   "version": 1,
-  "generatedAt": null,
-  "items": []
+  "generatedAt": "2026-06-25T20:46:55.156Z",
+  "items": [
+    {
+      "id": "1782419500742-9xhp4v",
+      "filmwebLink": "https://www.filmweb.pl/film/Lot+nad+kuku%C5%82czym+gniazdem-1975-1019",
+      "title": "Lot nad kukułczym gniazdem",
+      "year": 1975,
+      "filmwebRating": 8.5,
+      "scheduledAt": "2026-06-25T20:32:00.000Z",
+      "archivedAt": "2026-06-25T20:46:05.320Z"
+    }
+  ]
 }
