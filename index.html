@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Historia Filmów</title>
+    <meta name="description" content="Historia filmów z repertuaru." />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">Kino</p>
+          <h1>Historyczne filmy</h1>
+          <p id="history-summary" class="summary">Ładowanie historii…</p>
+        </div>
+        <div class="toolbar">
+          <label class="search-field" for="search-input">
+            <span>Szukaj</span>
+            <input id="search-input" type="search" placeholder="Tytuł, rok, Filmweb" autocomplete="off" />
+          </label>
+        </div>
+      </header>
+
+      <section class="history-panel">
+        <div id="status-message" class="status-message" aria-live="polite">Pobieranie danych…</div>
+        <div id="history-list" class="history-list" hidden></div>
+      </section>
+    </main>
+
+    <template id="history-item-template">
+      <article class="history-card">
+        <div class="history-card__meta">
+          <span class="history-card__year"></span>
+          <span class="history-card__separator">•</span>
+          <span class="history-card__rating"></span>
+        </div>
+        <h2 class="history-card__title"></h2>
+        <div class="history-card__dates">
+          <span class="history-card__scheduled"></span>
+          <span class="history-card__archived"></span>
+        </div>
+        <a class="history-card__link" target="_blank" rel="noopener noreferrer">Filmweb</a>
+      </article>
+    </template>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
