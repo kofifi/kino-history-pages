@@ -2,23 +2,5 @@
   "version": 1,
   "generatedAt": "2026-06-25T20:55:12.935Z",
   "items": [
-    {
-      "id": "1782420853507-oj218p",
-      "filmwebLink": "https://www.filmweb.pl/film/Pianista-2002-32225",
-      "title": "Pianista",
-      "year": 2002,
-      "filmwebRating": 8.3,
-      "scheduledAt": "2026-06-25T20:55:00.000Z",
-      "archivedAt": "2026-06-25T20:55:12.558Z"
-    },
-    {
-      "id": "1782419500742-9xhp4v",
-      "filmwebLink": "https://www.filmweb.pl/film/Lot+nad+kuku%C5%82czym+gniazdem-1975-1019",
-      "title": "Lot nad kukułczym gniazdem",
-      "year": 1975,
-      "filmwebRating": 8.5,
-      "scheduledAt": "2026-06-25T20:32:00.000Z",
-      "archivedAt": "2026-06-25T20:46:05.320Z"
-    }
   ]
 }
